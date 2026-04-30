@@ -822,6 +822,94 @@ section[data-testid="stSidebar"] button[kind="headerNoPadding"] {{
 section[data-testid="stSidebar"] > div > div > button:hover {{
   color: #10B981 !important;
 }}
+/* ── MOBILE & TABLET RESPONSIVE ─────────────────────────────────────────────
+   Streamlit renders columns as fixed-width divs — we force them to stack
+   on small screens using flex overrides on the column containers.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Tablet — 1024px and below */
+@media (max-width: 1024px) {{
+  /* Stack all column pairs */
+  div[data-testid="stHorizontalBlock"] {{
+    flex-wrap: wrap !important;
+  }}
+  div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"] {{
+    min-width: 100% !important;
+    width: 100% !important;
+    flex: 1 1 100% !important;
+  }}
+  /* Cover page stats */
+  .cs-grid {{
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }}
+  /* KPI cards — 2 per row */
+  .kpi {{ padding: 16px !important; }}
+  .kv {{ font-size: 28px !important; }}
+  /* Cover title */
+  .c-ttl {{ font-size: 38px !important; }}
+  /* Block container padding */
+  .block-container {{ padding: 1rem 1.2rem 4rem !important; }}
+}}
+
+/* Phone — 768px and below */
+@media (max-width: 768px) {{
+  /* Cover hero */
+  .cover {{
+    padding: 32px 24px 28px !important;
+    border-radius: 12px !important;
+  }}
+  .c-ttl {{ font-size: 30px !important; line-height: 1.2 !important; }}
+  .c-sub {{ font-size: 13px !important; }}
+  /* Cover stats — 2 col grid */
+  .cs-grid {{
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }}
+  .cs-n {{ font-size: 22px !important; }}
+  .cs-l {{ font-size: 9px !important; }}
+  /* Cover buttons — stack vertically */
+  div[data-testid="stHorizontalBlock"]:has(.btn-w) > div[data-testid="stColumn"] {{
+    min-width: 100% !important;
+    flex: 1 1 100% !important;
+  }}
+  /* KPI cards — single column */
+  .kpi {{ padding: 14px 16px !important; }}
+  .kv {{ font-size: 26px !important; }}
+  .kl {{ font-size: 9px !important; }}
+  /* Section labels */
+  .sec {{ font-size: 9px !important; margin-bottom: 10px !important; }}
+  /* Block container */
+  .block-container {{ padding: 0.75rem 0.9rem 4rem !important; }}
+  /* Sidebar — hide by default on mobile, accessible via toggle */
+  section[data-testid="stSidebar"] {{
+    min-width: 240px !important;
+    max-width: 80vw !important;
+  }}
+  /* Charts — ensure they don't overflow */
+  div[data-testid="stPlotlyChart"] {{
+    overflow-x: auto !important;
+  }}
+  /* Insights box */
+  .insights {{ padding: 14px 16px !important; }}
+  .insight-text {{ font-size: 12px !important; }}
+  /* Story chapters */
+  .chapter-body {{ font-size: 13px !important; }}
+  .stat-callout {{ padding: 20px !important; }}
+  .stat-num {{ font-size: 36px !important; }}
+}}
+
+/* Small phone — 480px and below */
+@media (max-width: 480px) {{
+  .c-ttl {{ font-size: 26px !important; }}
+  .cover {{ padding: 24px 18px 22px !important; }}
+  .cs-grid {{ grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }}
+  .cs-n {{ font-size: 20px !important; }}
+  .kv {{ font-size: 22px !important; }}
+  .block-container {{ padding: 0.5rem 0.75rem 3rem !important; }}
+  /* Verdict box */
+  div[style*="background:{NAVY}"] {{ padding: 20px 18px !important; }}
+}}
 </style>
 """, unsafe_allow_html=True)
 # ── Loading animation (shows once per session) ─────────────────────────────────
@@ -2280,7 +2368,7 @@ elif st.session_state.page == "dashboard":
                     ''', unsafe_allow_html=True)
 
             render_spacer(16)
-            st.markdown(f'<div class="sec">{metric} \u00b7 interactive map \u2014 hover for details</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="sec">{metric} · interactive map · hover for details</div>', unsafe_allow_html=True)
 
             # ── Choropleth map (MapLibre, no token needed) ────────────────────
             fig_map = go.Figure()
