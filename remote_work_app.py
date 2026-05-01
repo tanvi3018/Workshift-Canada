@@ -813,14 +813,33 @@ div[data-testid="collapsedControl"]::before {{
   transition: all .2s ease !important;
 }}
 
-/* Sidebar expand button (when sidebar is open — shows close arrow) */
-section[data-testid="stSidebar"] > div > div > button,
+/* Sidebar expand/collapse arrow button only */
+section[data-testid="stSidebar"] > div > div > button[kind="headerNoPadding"],
 section[data-testid="stSidebar"] button[kind="headerNoPadding"] {{
   color: rgba(255,255,255,.5) !important;
   transition: color .2s ease !important;
 }}
-section[data-testid="stSidebar"] > div > div > button:hover {{
+section[data-testid="stSidebar"] button[kind="headerNoPadding"]:hover {{
   color: #10B981 !important;
+}}
+/* Sidebar st.button widgets — language toggle + home button */
+section[data-testid="stSidebar"] div[data-testid="stButton"] > button {{
+  background: rgba(255,255,255,.08) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,.2) !important;
+  border-radius: var(--radius-pill) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  padding: 6px 16px !important;
+  width: 100% !important;
+  transition: all .18s ease !important;
+  white-space: nowrap !important;
+}}
+section[data-testid="stSidebar"] div[data-testid="stButton"] > button:hover {{
+  background: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #ffffff !important;
 }}
 /* ── MOBILE & TABLET RESPONSIVE ─────────────────────────────────────────────
    Streamlit renders columns as fixed-width divs — we force them to stack
