@@ -2,7 +2,7 @@
 
 **An interactive bilingual data dashboard analyzing remote work trends across Canada, 2020–2025.**
 
-Built by Tanvi Gera · Business Analyst · ESDC Canada
+Built by Tanvi Gera · Business Analyst · Canada
 
 ---
 
