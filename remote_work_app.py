@@ -945,7 +945,7 @@ if "loaded" not in st.session_state:
 
 # ── Session state ──────────────────────────────────────────────────────────────
 # Valid tab + page values for URL routing
-_VALID_TABS  = ["overview","industry","productivity","geography","forecast","story"]
+_VALID_TABS  = ["overview","industry","productivity","geography","forecast","story","methodology"]
 _VALID_PAGES = ["cover","dashboard","guide"]
 _VALID_LANGS = ["EN","FR"]
 
@@ -993,8 +993,8 @@ T = {
         "theme_lbl":    "Theme",
         "lang_btn":     "🇫🇷 FR",
         "stats":        ["Industries tracked","Time span","Key metrics","Cities analysed","Data source"],
-        "tabs":         ["📊  Overview","🏭  Industry Breakdown","📈  Productivity","🌍  Geography","🔭  Scenario","📖  Story & Sources"],
-        "tab_keys":     ["overview","industry","productivity","geography","forecast","story"],
+        "tabs":         ["📊  Overview","🏭  Industry Breakdown","📈  Productivity","🌍  Geography","🔭  Scenario","📖  Story & Sources","📋  Methodology"],
+        "tab_keys":     ["overview","industry","productivity","geography","forecast","story","methodology"],
         "insights_lbl": "💡 Key insights",
         "ins_overview": [
             "<strong>Finance & insurance</strong> leads with 85% WFH capacity, the highest of any Canadian industry.",
@@ -1063,8 +1063,8 @@ T = {
         "theme_lbl":    "Thème",
         "lang_btn":     "🇨🇦 EN",
         "stats":        ["Secteurs suivis","Période","Indicateurs clés","Villes analysées","Source des données"],
-        "tabs":         ["📊  Aperçu","🏭  Secteurs","📈  Productivité","🌍  Géographie","🔭  Scénario","📖  Récit & Sources"],
-        "tab_keys":     ["overview","industry","productivity","geography","forecast","story"],
+        "tabs":         ["📊  Aperçu","🏭  Secteurs","📈  Productivité","🌍  Géographie","🔭  Scénario","📖  Récit & Sources","📋  Méthodologie"],
+        "tab_keys":     ["overview","industry","productivity","geography","forecast","story","methodology"],
         "insights_lbl": "💡 Points clés",
         "ins_overview": [
             "<strong>Finance et assurance</strong> mène avec 85% de capacité de télétravail, la plus élevée de toutes les industries canadiennes.",
@@ -1439,6 +1439,7 @@ elif st.session_state.page == "dashboard":
     # OVERVIEW
     # ══════════════════════════════════════════════════════════════════════════
     if tab == "overview":
+        st.markdown(f'''<div style="font-family:Inter,sans-serif;font-size:12px;color:#6B7280;line-height:1.6;margin-bottom:16px;padding:10px 14px;background:rgba(16,185,129,.05);border-left:3px solid #10B981;border-radius:0 6px 6px 0;">This is the starting point. These four numbers set the scene — where remote work is today, how much could be done remotely, and the productivity question we will return to throughout.</div>''', unsafe_allow_html=True)
         render_insights("ins_overview")
 
         t = T[st.session_state.lang]
@@ -1678,6 +1679,7 @@ elif st.session_state.page == "dashboard":
     # KEY FINDINGS (Executive TL;DR)
     # ══════════════════════════════════════════════════════════════════════════
     elif tab == "industry":
+        st.markdown(f'''<div style="font-family:Inter,sans-serif;font-size:12px;color:#6B7280;line-height:1.6;margin-bottom:16px;padding:10px 14px;background:rgba(16,185,129,.05);border-left:3px solid #10B981;border-radius:0 6px 6px 0;">The Overview showed you the national picture. This page goes deeper — which industries adapted, which could not, and where the biggest gaps between capacity and actual use exist today.</div>''', unsafe_allow_html=True)
         render_insights("ins_industry")
 
         render_spacer(16)
@@ -2161,6 +2163,7 @@ elif st.session_state.page == "dashboard":
     # PRODUCTIVITY
     # ══════════════════════════════════════════════════════════════════════════
     elif tab == "productivity":
+        st.markdown(f'''<div style="font-family:Inter,sans-serif;font-size:12px;color:#6B7280;line-height:1.6;margin-bottom:16px;padding:10px 14px;background:rgba(16,185,129,.05);border-left:3px solid #10B981;border-radius:0 6px 6px 0;">The Industry Breakdown showed what was possible. This page answers the harder question: did it actually work? Here is where the 90% number from the Overview comes from.</div>''', unsafe_allow_html=True)
         render_insights("ins_productivity")
 
         k1,k2,k3,k4 = st.columns(4,gap="small")
@@ -2342,6 +2345,13 @@ elif st.session_state.page == "dashboard":
     # CITY BREAKDOWN
     elif tab == "geography":
         # ── Geography: Interactive Canada Map + City Drill-down ───────────────
+        st.markdown(f'''<div style="font-family:Inter,sans-serif;font-size:12px;
+        color:#6B7280;line-height:1.6;margin-bottom:16px;padding:10px 14px;
+        background:rgba(16,185,129,.05);border-left:3px solid #10B981;border-radius:0 6px 6px 0;">
+        We have seen the national and industry picture. Now the question is:
+        where in Canada is this happening — and why does location matter?
+        The answer is less about geography and more about industrial structure.
+        </div>''', unsafe_allow_html=True)
         render_insights("ins_geography")
 
         # ── View toggle ────────────────────────────────────────────────────────
@@ -2622,6 +2632,7 @@ elif st.session_state.page == "dashboard":
                 st.markdown("**Montreal's lead in hybrid is not a coincidence.** Quebec-based knowledge employers have leaned into flexibility post-pandemic, while Toronto's economy has more big-bank head offices that are pulling people back. Winnipeg sits at the bottom because its job base skews more on-site \u2014 manufacturing, transportation, and physical services.")
 
     elif tab == "forecast":
+        st.markdown(f'''<div style="font-family:Inter,sans-serif;font-size:12px;color:#6B7280;line-height:1.6;margin-bottom:16px;padding:10px 14px;background:rgba(16,185,129,.05);border-left:3px solid #10B981;border-radius:0 6px 6px 0;">We know what happened and where. This page asks: where is this going? Two very different trajectories are emerging — one for the public sector, one for private. Note: these are policy-based scenarios, not statistical forecasts.</div>''', unsafe_allow_html=True)
         render_insights("ins_forecast")
 
         # ================================================================
@@ -2952,6 +2963,237 @@ elif st.session_state.page == "dashboard":
 
 
     # ── Footer on all dashboard pages ─────────────────────────────────────────
+
+    elif tab == "methodology":
+        t = T[st.session_state.lang]
+
+        # Bridge
+        st.markdown('''<div style="font-family:Inter,sans-serif;font-size:12px;
+        color:#6B7280;line-height:1.6;margin-bottom:16px;padding:10px 14px;
+        background:rgba(16,185,129,.05);border-left:3px solid #10B981;border-radius:0 6px 6px 0;">
+        This page explains every term, every data source, and every analytical decision behind
+        this dashboard — written so that any analyst, manager, or policy reviewer can
+        understand exactly how the numbers were produced and where their limits are.
+        </div>''', unsafe_allow_html=True)
+
+        render_section("Data sources")
+        for src_title, src_badge, src_body, src_color in [
+            ("Statistics Canada · Table 33-10-0228-01", "PRIMARY DATASET",
+             "Business survey on remote work capacity and adoption across 17 NAICS-coded industries. "
+             "Covers three time points: pre-COVID baseline (before February 2020), pandemic peak "
+             "(March–April 2020), and post-COVID as of Q2 2025. "
+             "Published under the Statistics Canada Open Government Licence. Freely accessible at open.canada.ca.",
+             TEAL_MID),
+            ("Statistics Canada · Labour Force Survey (LFS) 2020–2025", "LONGITUDINAL TREND",
+             "Annual and quarterly labour force data used to construct the remote work trend line "
+             "(2019–2025) and the public vs private sector scenario trajectories. "
+             "Provincial remote work estimates on the Geography page are derived from LFS "
+             "microdata weighted by provincial industry composition.",
+             TEAL_MID),
+            ("Robert Half Canada · Salary Guide Q4 2025", "CITY-LEVEL DATA",
+             "Analysis of job postings across 9 major Canadian metropolitan areas showing the "
+             "share of new roles advertised as hybrid or fully remote. "
+             "Note: this reflects employer intent in postings, not what workers are actually doing. "
+             "In competitive labour markets, employers sometimes advertise more flexibility than they deliver.",
+             AMBER),
+            ("Treasury Board of Canada Secretariat · Policy announcements", "RTO TIMELINE",
+             "Federal return-to-office mandate dates cross-referenced with official TBS announcements, "
+             "CBC News, Globe and Mail reporting, and PSAC official statements. "
+             "Used to construct the annotated event markers on the Scenario page.",
+             CORAL),
+        ]:
+            st.markdown(f'''
+            <div style="background:var(--secondary-background-color,#F9FAFB);
+              border:1px solid rgba(0,0,0,.08);border-radius:10px;
+              padding:14px 18px;margin-bottom:10px;border-left:4px solid {src_color};">
+              <div style="font-family:Inter,sans-serif;font-size:8.5px;font-weight:700;
+                letter-spacing:.1em;text-transform:uppercase;
+                color:{src_color};margin-bottom:4px;">{src_badge}</div>
+              <div style="font-family:Inter,sans-serif;font-size:13px;font-weight:600;
+                color:var(--text-color,#0A1628);margin-bottom:6px;">{src_title}</div>
+              <div style="font-family:Inter,sans-serif;font-size:11.5px;
+                color:#6B7280;line-height:1.7;">{src_body}</div>
+            </div>
+            ''', unsafe_allow_html=True)
+
+        render_spacer(24)
+        render_section("Terminology — every term defined")
+
+        terms = [
+            ("NAICS", "North American Industry Classification System",
+             "The standard used by Statistics Canada to categorize businesses into industries. "
+             "This dashboard uses 2-digit NAICS codes — the broadest level — which groups all "
+             "businesses into 17 industry sectors such as Finance and insurance (52), "
+             "Information and cultural industries (51), and Agriculture (11). "
+             "Sub-industry breakdowns are not used because they are not available at this level of public data."),
+            ("WFH Capacity", "Work-from-Home Capacity",
+             "The percentage of a business's workforce that could, in theory, carry out the "
+             "majority of their duties remotely. Sourced directly from the Statistics Canada "
+             "survey question: 'What percentage of your employees are able to carry out the "
+             "majority of their duties from home?' "
+             "This is a ceiling — it represents structural possibility, not current practice. "
+             "A capacity of 85% does not mean 85% are working from home. "
+             "It means 85% could, if permitted."),
+            ("Weighted Average", "How industry-level percentages are calculated",
+             "The raw Statistics Canada data reports the share of businesses falling into each "
+             "percentage-range bucket (e.g. '10% to less than 20% of workforce remote'). "
+             "Each bucket is assigned its midpoint value (15%). "
+             "A weighted average is then computed using the share of businesses in each bucket "
+             "as the weight. This produces a single representative estimate per industry per time period. "
+             "This is an analyst transformation — it is not a number directly published by Statistics Canada."),
+            ("Capacity Utilisation Rate", "The gap between possible and actual",
+             "Computed as: Actual 2025 remote % divided by WFH Capacity % multiplied by 100. "
+             "A utilisation rate of 26% for Finance means that industry is using approximately "
+             "26% of its theoretical remote work capacity. "
+             "The remaining 74% is structurally available but not currently being used. "
+             "This metric is original analytical work — it does not appear in any Statistics Canada publication."),
+            ("LFS", "Labour Force Survey",
+             "Statistics Canada's monthly survey of approximately 56,000 households, "
+             "measuring employment, unemployment, and working conditions across Canada. "
+             "It is the primary source of labour market information in Canada and the basis "
+             "for the remote work trend line and provincial estimates in this dashboard."),
+            ("Province Cluster", "Economic grouping of provinces",
+             "Provinces are grouped into three clusters based on their dominant industry type: "
+             "Knowledge (Ontario, BC, Quebec — finance, tech, professional services dominant), "
+             "Mixed (Alberta, Nova Scotia, New Brunswick, Manitoba, PEI — blend of knowledge and physical), "
+             "and Resource (Saskatchewan, Newfoundland, Northwest Territories, Yukon, Nunavut — "
+             "agriculture, mining, energy dominant). "
+             "This grouping is an analyst construct used to show that provincial remote work "
+             "rates reflect economic structure, not geographic coincidence."),
+            ("RTO Mandate", "Return-to-Office Mandate",
+             "A formal employer policy requiring employees to work on-site for a minimum number "
+             "of days per week. In this dashboard, the term refers specifically to federal "
+             "government directives issued by Treasury Board Canada: "
+             "September 2024 (3 days), July 2025 (4 days), and the projected 5-day requirement "
+             "for 2027 based on current policy trajectory. "
+             "Municipal mandates (e.g. City of Ottawa's January 2026 full return) are also annotated."),
+            ("Scenario vs Forecast", "Why the Scenario page is not called a forecast",
+             "A forecast is a statistical prediction generated by a model (e.g. regression, ARIMA) "
+             "fitted to historical data with quantified uncertainty. "
+             "The public and private sector trajectories in this dashboard are scenarios — "
+             "projections based on announced policy timelines and observed employer trends, "
+             "not statistical models. "
+             "The direction is well-supported by the data. "
+             "The exact 2027 numbers are illustrative and should not be cited as predictions."),
+            ("Hybrid Work", "Split arrangements between home and office",
+             "A working arrangement where an employee splits time between a remote location "
+             "(typically home) and a physical workplace. In this dashboard, hybrid rates "
+             "from the Robert Half city data refer to the share of new job postings "
+             "that advertise a hybrid arrangement as a condition of employment."),
+        ]
+
+        for term, full, body in terms:
+            st.markdown(f'''
+            <div style="margin-bottom:12px;padding:14px 18px;
+              background:var(--secondary-background-color,#F9FAFB);
+              border:1px solid rgba(0,0,0,.07);border-radius:10px;">
+              <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;
+                  font-weight:700;color:#10B981;">{term}</span>
+                <span style="font-family:Inter,sans-serif;font-size:12px;
+                  color:#6B7280;font-style:italic;">{full}</span>
+              </div>
+              <div style="font-family:Inter,sans-serif;font-size:11.5px;
+                color:var(--text-color,#374151);line-height:1.75;">{body}</div>
+            </div>
+            ''', unsafe_allow_html=True)
+
+        render_spacer(24)
+        render_section("Analytical decisions — what we chose and why")
+
+        decisions = [
+            ("Why 17 industries and not more",
+             "Statistics Canada's Table 33-10-0228-01 publishes remote work data at the 2-digit NAICS level. "
+             "This gives 20 possible categories, but three (Management of companies, Public administration "
+             "sub-sectors, and Unclassified) have incomplete or suppressed data. "
+             "Retaining 17 industries gives complete coverage without introducing gaps."),
+            ("Why top 10 on the Overview bar chart",
+             "Displaying all 17 industries on the Overview page creates a 600px chart that forces "
+             "scrolling before the viewer has seen the trend line. The bottom 7 industries are "
+             "all physical-sector with low capacity — they add noise rather than insight at the overview level. "
+             "All 17 are available on the Industry Breakdown page."),
+            ("Why the province data carries higher uncertainty",
+             "No Statistics Canada table directly publishes remote work rates by province at this level "
+             "of granularity. Provincial estimates are derived by weighting the LFS provincial employment "
+             "shares against the industry-level remote work rates from Table 33-10-0228-01. "
+             "This is a standard analytical derivation, but it introduces estimation error. "
+             "Treat province comparisons as directionally correct, not precisely accurate."),
+            ("Why we use business-level data rather than worker-level",
+             "The Statistics Canada survey counts businesses, not individual workers. "
+             "A small firm with 5 employees counts equally to a large firm with 5,000. "
+             "Industries dominated by a small number of large employers "
+             "(banking, federal government) may be understated as a result. "
+             "Worker-level remote work data at this industry granularity is not publicly available."),
+            ("Why the 2027 projection is not a statistical model",
+             "Building a statistically defensible forecast would require fitting a time series model "
+             "(ARIMA or similar) to LFS quarterly data and producing confidence intervals. "
+             "That data is not fully available at the required granularity in public LFS tables. "
+             "The scenario lines are constructed from announced policy timelines "
+             "(public sector) and observed employer announcements (private sector). "
+             "A proper regression model is listed as a future addition."),
+        ]
+
+        for title, body in decisions:
+            st.markdown(f'''
+            <div style="margin-bottom:10px;padding:14px 18px;
+              background:var(--secondary-background-color,#F9FAFB);
+              border:1px solid rgba(0,0,0,.07);border-radius:10px;
+              border-left:4px solid #10B981;">
+              <div style="font-family:Inter,sans-serif;font-size:13px;font-weight:600;
+                color:var(--text-color,#0A1628);margin-bottom:6px;">{title}</div>
+              <div style="font-family:Inter,sans-serif;font-size:11.5px;
+                color:#6B7280;line-height:1.75;">{body}</div>
+            </div>
+            ''', unsafe_allow_html=True)
+
+        render_spacer(24)
+        render_section("Limitations — what this dashboard cannot tell you")
+
+        limits = [
+            ("This dashboard does not establish causality",
+             "The data shows that RTO mandates correlate with declining remote work rates. "
+             "It does not prove that mandates cause lower productivity, higher attrition, or lower morale. "
+             "Establishing those relationships requires longitudinal individual-level data that is not publicly available.",
+             CORAL),
+            ("Province data is estimated, not directly measured",
+             "Treat province comparisons as directionally correct. "
+             "The estimation method introduces margin of error that is not quantified in this dashboard.",
+             AMBER),
+            ("City data reflects employer intent, not workforce reality",
+             "Robert Half data shows what employers advertise in job postings. "
+             "Actual remote work rates at the city level may differ from posted rates, "
+             "especially where employers have tightened policies after hiring.",
+             AMBER),
+            ("The 2027 scenario is illustrative",
+             "Do not cite the 3% public sector or 12% private sector 2027 figures as predictions. "
+             "They are scenario endpoints based on current policy direction. "
+             "Policy can change.",
+             MUTED),
+            ("Survey unit is the business, not the worker",
+             "All industry-level percentages reflect business reporting, not individual worker experience. "
+             "Large-employer-dominated industries may be understated.",
+             MUTED),
+        ]
+
+        for title, body, color in limits:
+            st.markdown(f'''
+            <div style="margin-bottom:10px;padding:14px 18px;
+              background:var(--secondary-background-color,#F9FAFB);
+              border:1px solid rgba(0,0,0,.07);border-radius:10px;
+              border-left:4px solid {color};">
+              <div style="font-family:Inter,sans-serif;font-size:13px;font-weight:600;
+                color:var(--text-color,#0A1628);margin-bottom:6px;">{title}</div>
+              <div style="font-family:Inter,sans-serif;font-size:11.5px;
+                color:#6B7280;line-height:1.75;">{body}</div>
+            </div>
+            ''', unsafe_allow_html=True)
+
+        render_spacer(12)
+        render_source("Statistics Canada Open Government Licence · "
+                      "Robert Half Canada Q4 2025 · "
+                      "Treasury Board of Canada Secretariat · "
+                      "Data as of Q2 2025 · UNCLASSIFIED / PUBLIC")
+
     render_footer()
     st.markdown(f"""
     <div style="text-align:center;margin-top:24px;">
